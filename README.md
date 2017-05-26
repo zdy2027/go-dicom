@@ -16,9 +16,12 @@ func main() {
 	
 	parser, err := dicom.NewParser()
 	data, err := parser.Parse(bytes)
-
+	dcm := &dicom.DicomFile{}
+	gw := new(sync.WaitGroup)
+	dcm.Discard(c,gw)
+	gw.Wait()
 	for _, elem := range data.Elements {
-		fmt.Printf("%+v\n", &elem)
+		fmt.Printf("%+v\n", elem)
 	}
 
 }
